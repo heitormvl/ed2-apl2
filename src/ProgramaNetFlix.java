@@ -1,198 +1,203 @@
-import java.util.List;
+public class ProgramaNetflix {
 
-public class ProgramaNetFlix {
-
-    // Enum para ShowType
-    public enum ShowType {
-        SHOW, MOVIE
+    // Enumerador para o tipo de programa
+    enum Tipo {
+        filme,
+        serie
     }
 
-    // Atributos
-
-    private int id;
+    // Atributos da classe
+    private String id;
     private String titulo;
-    private ShowType show_type;
+    private Tipo tipo;
     private String descricao;
-    private int release_year;
-    private String age_certification;
-    private int runtime;
-    private List<String> generos;
-    private List<String> production_countries;
+    private int anoLancamento;
+    private String classificacaoIndicativa;
+    private int duracao;
+    private String genero;
+    private String paisOrigem;
     private int temporadas;
-    private String imdb_id;
-    private int imdb_score;
-    private int imdb_votes;
-    private int tmdb_popularity;
-    private int tmdb_score;
+    private String imdbId;
+    private Float imdbScore;
+    private int imdbVotes;
+    private Float tmdbPopularity;
+    private Float tmdbScore;
 
-    // Construtor
+    // Inclua todos os outros atributos necessários
 
-    public ProgramaNetFlix(int id, String titulo, ShowType show_type, String descricao, int release_year,
-            String age_certification, int runtime, List<String> generos, List<String> production_countries,
-            int temporadas,
-            String imdb_id, int imdb_score, int imdb_votes, int tmdb_popularity, int tmdb_score) {
-        this.id = id;
-        this.titulo = titulo;
-        this.show_type = show_type;
-        this.descricao = descricao;
-        this.release_year = release_year;
-        this.age_certification = age_certification;
-        this.runtime = runtime;
-        this.generos = generos;
-        this.production_countries = production_countries;
-        this.temporadas = temporadas;
-        this.imdb_id = imdb_id;
-        this.imdb_score = imdb_score;
-        this.imdb_votes = imdb_votes;
-        this.tmdb_popularity = tmdb_popularity;
-        this.tmdb_score = tmdb_score;
+    // Construtor sem argumentos
+    public ProgramaNetflix() {
+        // Inicialize os atributos com valores padrão
     }
 
-    // Getters e Setters
+    // Construtor com argumentos
+    public ProgramaNetflix(String titulo, Tipo tipo, String descricao, int anoLancamento,
+            String classificacaoIndicativa, int duracao, String genero, String paisOrigem, int temporadas,
+            String imdbId, Float imdbScore, int imdbVotes, Float tmdbPopularity, Float tmdbScore) {
+        // Inicialize os atributos com os valores passados como argumento
+        this.titulo = titulo;
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.anoLancamento = anoLancamento;
+        this.classificacaoIndicativa = classificacaoIndicativa;
+        this.duracao = duracao;
+        this.genero = genero;
+        this.paisOrigem = paisOrigem;
+        this.temporadas = temporadas;
+        this.imdbId = imdbId;
+        this.imdbScore = imdbScore;
+        this.imdbVotes = imdbVotes;
+        this.tmdbPopularity = tmdbPopularity;
+        this.tmdbScore = tmdbScore;
+    }
 
-    public int getId() {
-        return this.id;
+    // Getters
+    public String getId() {
+        return id;
     }
 
     public String getTitulo() {
-        return this.titulo;
+        return titulo;
     }
 
-    public ShowType getShow_type() {
-        return this.show_type;
+    public Tipo getTipo() {
+        return tipo;
     }
 
     public String getDescricao() {
-        return this.descricao;
+        return descricao;
     }
 
-    public int getRelease_year() {
-        return this.release_year;
+    public int getAnoLancamento() {
+        return anoLancamento;
     }
 
-    public String getAge_certification() {
-        return this.age_certification;
+    public String getClassificacaoIndicativa() {
+        return classificacaoIndicativa;
     }
 
-    public int getRuntime() {
-        return this.runtime;
+    public int getDuracao() {
+        return duracao;
     }
 
-    public List<String> getGeneros() {
-        return this.generos;
+    public String getGenero() {
+        return genero;
     }
 
-    public List<String> getProduction_countries() {
-        return this.production_countries;
+    public String getPaisOrigem() {
+        return paisOrigem;
     }
 
     public int getTemporadas() {
-        return this.temporadas;
+        return temporadas;
     }
 
-    public String getImdb_id() {
-        return this.imdb_id;
+    public String getImdbId() {
+        return imdbId;
     }
 
-    public int getImdb_score() {
-        return this.imdb_score;
+    public Float getImdbScore() {
+        return imdbScore;
     }
 
-    public int getImdb_votes() {
-        return this.imdb_votes;
+    public int getImdbVotes() {
+        return imdbVotes;
     }
 
-    public int getTmdb_popularity() {
-        return this.tmdb_popularity;
+    public Float getTmdbPopularity() {
+        return tmdbPopularity;
     }
 
-    public int getTmdb_score() {
-        return this.tmdb_score;
+    public Float getTmdbScore() {
+        return tmdbScore;
     }
 
-    public void setId(int id) {
+    // Setters
+
+    public void setId(String id) {
         this.id = id;
     }
 
     public void setTitulo(String titulo) {
+        // Valide o título antes de atribuir
         this.titulo = titulo;
     }
 
-    public void setShow_type(ShowType show_type) {
-        this.show_type = show_type;
+    public void setTipo(Tipo tipo) {
+        // Valide o tipo antes de atribuir
+        this.tipo = tipo;
     }
 
     public void setDescricao(String descricao) {
+        // Valide a descrição antes de atribuir
         this.descricao = descricao;
     }
 
-    public void setRelease_year(int release_year) {
-        this.release_year = release_year;
+    public void setAnoLancamento(int anoLancamento) {
+        // Valide o ano de lançamento antes de atribuir
+        this.anoLancamento = anoLancamento;
     }
 
-    public void setAge_certification(String age_certification) {
-        this.age_certification = age_certification;
+    public void setClassificacaoIndicativa(String classificacaoIndicativa) {
+        // Valide a classificação indicativa antes de atribuir
+        this.classificacaoIndicativa = classificacaoIndicativa;
     }
 
-    public void setRuntime(int runtime) {
-        this.runtime = runtime;
+    public void setDuracao(int duracao) {
+        // Valide a duração antes de atribuir
+        this.duracao = duracao;
     }
 
-    public void setGeneros(List<String> generos) {
-        this.generos = generos;
+    public void setGenero(String genero) {
+        // Valide o gênero antes de atribuir
+        this.genero = genero;
     }
 
-    public void setProduction_countries(List<String> production_countries) {
-        this.production_countries = production_countries;
+    public void setPaisOrigem(String paisOrigem) {
+        // Valide o país de origem antes de atribuir
+        this.paisOrigem = paisOrigem;
     }
 
     public void setTemporadas(int temporadas) {
+        // Valide o número de temporadas antes de atribuir
         this.temporadas = temporadas;
     }
 
-    public void setImdb_id(String imdb_id) {
-        this.imdb_id = imdb_id;
+    public void setImdbId(String imdbId) {
+        // Valide o ID do IMDb antes de atribuir
+        this.imdbId = imdbId;
     }
 
-    public void setImdb_score(int imdb_score) {
-        this.imdb_score = imdb_score;
+    public void setImdbScore(Float imdbScore) {
+        // Valide a pontuação do IMDb antes de atribuir
+        this.imdbScore = imdbScore;
     }
 
-    public void setImdb_votes(int imdb_votes) {
-        this.imdb_votes = imdb_votes;
+    public void setImdbVotes(int imdbVotes) {
+        // Valide o número de votos do IMDb antes de atribuir
+        this.imdbVotes = imdbVotes;
     }
 
-    public void setTmdb_popularity(int tmdb_popularity) {
-        this.tmdb_popularity = tmdb_popularity;
+    public void setTmdbPopularity(Float tmdbPopularity) {
+        // Valide a popularidade do TMDb antes de atribuir
+        this.tmdbPopularity = tmdbPopularity;
     }
 
-    public void setTmdb_score(int tmdb_score) {
-        this.tmdb_score = tmdb_score;
+    public void setTmdbScore(Float tmdbScore) {
+        // Valide a pontuação do TMDb antes de atribuir
+        this.tmdbScore = tmdbScore;
     }
 
-    // toString
-
+    // Método toString
     @Override
     public String toString() {
-        return "ProgramaNetFlix {" +
-                " id='" + id + "'," +
-                " titulo='" + titulo + "'," +
-                " show_type='" + show_type + "'," +
-                " descricao='" + descricao + "'," +
-                " release_year='" + release_year + "'," +
-                " age_certification='" + age_certification + "'," +
-                " runtime='" + runtime + "'," +
-                " generos=" + generos + "," +
-                " production_countries=" + production_countries + "," +
-                " temporadas='" + temporadas + "'," +
-                " imdb_id='" + imdb_id + "'," +
-                " imdb_score='" + imdb_score + "'," +
-                " imdb_votes='" + imdb_votes + "'," +
-                " tmdb_popularity='" + tmdb_popularity + "'," +
-                " tmdb_score='" + tmdb_score + "'" +
-                "}";
+        return "ProgramaNetflix [anoLancamento=" + anoLancamento + ", classificacaoIndicativa="
+                + classificacaoIndicativa + ", descricao=" + descricao + ", duracao=" + duracao + ", genero=" + genero
+                + ", id=" + id + ", imdbId=" + imdbId + ", imdbScore=" + imdbScore + ", imdbVotes=" + imdbVotes
+                + ", paisOrigem=" + paisOrigem + ", temporadas=" + temporadas + ", tipo=" + tipo + ", titulo=" + titulo
+                + ", tmdbPopularity=" + tmdbPopularity + ", tmdbScore=" + tmdbScore + "]";
     }
-}
 
-// Referências:
-// https://www.w3schools.com/java/java_enums.asp (Enum)
+    // Métodos de validação (opcional)
+    // Exemplo: validar o ano de lançamento
+}
