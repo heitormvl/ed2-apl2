@@ -1,10 +1,10 @@
-Compreensão do Projeto e do Dataset: Primeiro, familiarize-se com o objetivo do projeto, que é comparar a eficiência das estruturas de dados AVL e BST usando um dataset da Netflix. Estude o dataset fornecido para entender os atributos disponíveis e como eles podem ser usados nas árvores AVL e BST.
+# Compreensão do Projeto e do Dataset: Primeiro, familiarize-se com o objetivo do projeto, que é comparar a eficiência das estruturas de dados AVL e BST usando um dataset da Netflix. Estude o dataset fornecido para entender os atributos disponíveis e como eles podem ser usados nas árvores AVL e BST.
 
-Preparação do Ambiente de Desenvolvimento: Configure seu ambiente de desenvolvimento Java, preferencialmente usando o Eclipse, já que o projeto deve ser testado nessa IDE.
+# Preparação do Ambiente de Desenvolvimento: Configure seu ambiente de desenvolvimento Java, preferencialmente usando o Eclipse, já que o projeto deve ser testado nessa IDE.
 
-Download e Análise do Dataset: Acesse o Kaggle e faça o download do dataset da Netflix. O dataset contém informações sobre conteúdos de streaming, como títulos, tipos de shows, descrição, ano de lançamento, etc. Você utilizará principalmente o arquivo titles.csv.
+# Download e Análise do Dataset: Acesse o Kaggle e faça o download do dataset da Netflix. O dataset contém informações sobre conteúdos de streaming, como títulos, tipos de shows, descrição, ano de lançamento, etc. Você utilizará principalmente o arquivo titles.csv.
 
-Criação da Classe ProgramaNetFlix: Desenvolva uma classe em Java para representar cada item do dataset, contendo os 15 atributos fornecidos, como título, tipo de programa, descrição, ano de lançamento, etc. Implemente os métodos construtores, getters e setters.
+# Criação da Classe ProgramaNetFlix: Desenvolva uma classe em Java para representar cada item do dataset, contendo os 15 atributos fornecidos, como título, tipo de programa, descrição, ano de lançamento, etc. Implemente os métodos construtores, getters e setters.
 
 Implementação das Estruturas de Dados: Implemente as estruturas de dados AVL e BST em Java. A chave de inserção em ambas as árvores deve ser o ID do título.
 

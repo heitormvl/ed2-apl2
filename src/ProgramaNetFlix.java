@@ -1,12 +1,13 @@
 public class ProgramaNetflix {
 
-    // Enumerador para o tipo de programa
+    // Enumeração para os tipos de programas: filme ou série
     enum Tipo {
         filme,
         serie
     }
 
-    // Atributos da classe
+    // Atributos privados da classe para armazenar as informações de um programa
+    // Netflix
     private String id;
     private String titulo;
     private Tipo tipo;
@@ -23,18 +24,17 @@ public class ProgramaNetflix {
     private Float tmdbPopularity;
     private Float tmdbScore;
 
-    // Inclua todos os outros atributos necessários
-
-    // Construtor sem argumentos
+    // Construtor padrão
     public ProgramaNetflix() {
-        // Inicialize os atributos com valores padrão
+        // Este construtor é vazio e permite a criação de um objeto sem inicializar os
+        // campos
     }
 
-    // Construtor com argumentos
-    public ProgramaNetflix(String titulo, Tipo tipo, String descricao, int anoLancamento,
+    // Construtor com parâmetros para inicializar todos os atributos da classe
+    public ProgramaNetflix(String id, String titulo, Tipo tipo, String descricao, int anoLancamento,
             String classificacaoIndicativa, int duracao, String genero, String paisOrigem, int temporadas,
             String imdbId, Float imdbScore, int imdbVotes, Float tmdbPopularity, Float tmdbScore) {
-        // Inicialize os atributos com os valores passados como argumento
+        this.id = id;
         this.titulo = titulo;
         this.tipo = tipo;
         this.descricao = descricao;
@@ -51,7 +51,9 @@ public class ProgramaNetflix {
         this.tmdbScore = tmdbScore;
     }
 
-    // Getters
+    // Inicializa os atributos com os valores fornecidos
+
+    // Métodos getters para acessar os valores dos atributos
     public String getId() {
         return id;
     }
@@ -112,83 +114,68 @@ public class ProgramaNetflix {
         return tmdbScore;
     }
 
-    // Setters
-
+    // Métodos setters para modificar os valores dos atributos
     public void setId(String id) {
         this.id = id;
     }
 
     public void setTitulo(String titulo) {
-        // Valide o título antes de atribuir
         this.titulo = titulo;
     }
 
     public void setTipo(Tipo tipo) {
-        // Valide o tipo antes de atribuir
         this.tipo = tipo;
     }
 
     public void setDescricao(String descricao) {
-        // Valide a descrição antes de atribuir
         this.descricao = descricao;
     }
 
     public void setAnoLancamento(int anoLancamento) {
-        // Valide o ano de lançamento antes de atribuir
         this.anoLancamento = anoLancamento;
     }
 
     public void setClassificacaoIndicativa(String classificacaoIndicativa) {
-        // Valide a classificação indicativa antes de atribuir
         this.classificacaoIndicativa = classificacaoIndicativa;
     }
 
     public void setDuracao(int duracao) {
-        // Valide a duração antes de atribuir
         this.duracao = duracao;
     }
 
     public void setGenero(String genero) {
-        // Valide o gênero antes de atribuir
         this.genero = genero;
     }
 
     public void setPaisOrigem(String paisOrigem) {
-        // Valide o país de origem antes de atribuir
         this.paisOrigem = paisOrigem;
     }
 
     public void setTemporadas(int temporadas) {
-        // Valide o número de temporadas antes de atribuir
         this.temporadas = temporadas;
     }
 
     public void setImdbId(String imdbId) {
-        // Valide o ID do IMDb antes de atribuir
         this.imdbId = imdbId;
     }
 
     public void setImdbScore(Float imdbScore) {
-        // Valide a pontuação do IMDb antes de atribuir
         this.imdbScore = imdbScore;
     }
 
     public void setImdbVotes(int imdbVotes) {
-        // Valide o número de votos do IMDb antes de atribuir
         this.imdbVotes = imdbVotes;
     }
 
     public void setTmdbPopularity(Float tmdbPopularity) {
-        // Valide a popularidade do TMDb antes de atribuir
         this.tmdbPopularity = tmdbPopularity;
     }
 
     public void setTmdbScore(Float tmdbScore) {
-        // Valide a pontuação do TMDb antes de atribuir
         this.tmdbScore = tmdbScore;
     }
 
-    // Método toString
+    // Método toString para representar o objeto como uma string
     @Override
     public String toString() {
         return "ProgramaNetflix [anoLancamento=" + anoLancamento + ", classificacaoIndicativa="
@@ -196,8 +183,6 @@ public class ProgramaNetflix {
                 + ", id=" + id + ", imdbId=" + imdbId + ", imdbScore=" + imdbScore + ", imdbVotes=" + imdbVotes
                 + ", paisOrigem=" + paisOrigem + ", temporadas=" + temporadas + ", tipo=" + tipo + ", titulo=" + titulo
                 + ", tmdbPopularity=" + tmdbPopularity + ", tmdbScore=" + tmdbScore + "]";
+        // Retorna uma string que representa todos os atributos do programa Netflix
     }
-
-    // Métodos de validação (opcional)
-    // Exemplo: validar o ano de lançamento
 }
