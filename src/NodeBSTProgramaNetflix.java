@@ -72,82 +72,62 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
         // Insere o programa de acordo com a ordem alfabética dos títulos
     }
 
-    // Método para buscar um programa pelo título
-    public NodeBSTProgramaNetflix search(String titulo) {
-        if (this.getTitulo().equalsIgnoreCase(titulo)) {
-            return this;
-        } else {
-            if (titulo.compareToIgnoreCase(this.getTitulo()) < 0) {
-                if (this.left == null) {
-                    return null;
-                } else {
-                    return this.left.search(titulo);
-                }
+    // Método para remover um programa pelo ID
+    public NodeBSTProgramaNetflix remove(String id) {
+        if (this.getId().equalsIgnoreCase(id)) {
+            if (this.left == null && this.right == null) {
+                return null; // Nó sem filhos
+            } else if (this.left == null) {
+                return this.right; // Nó com apenas um filho à direita
+            } else if (this.right == null) {
+                return this.left; // Nó com apenas um filho à esquerda
             } else {
-                if (this.right == null) {
-                    return null;
-                } else {
-                    return this.right.search(titulo);
-                }
+                // Nó com dois filhos
+                NodeBSTProgramaNetflix aux = findMin(this.right);
+                // Copiando os dados do sucessor para este nó
+                copyData(aux, this);
+                // Removendo o sucessor
+                this.right = this.right.remove(aux.getId());
+                return this;
             }
+        } else if (id.compareToIgnoreCase(this.getId()) < 0) {
+            if (this.left != null) {
+                this.left = this.left.remove(id);
+            }
+            return this; // Retorna o nó atual após a remoção da subárvore esquerda
+        } else {
+            if (this.right != null) {
+                this.right = this.right.remove(id);
+            }
+            return this; // Retorna o nó atual após a remoção da subárvore direita
         }
-        // Realiza uma busca binária pelo título na árvore
     }
 
-    // Método para remover um programa pelo título
-    public NodeBSTProgramaNetflix remove(String titulo) {
-        if (this.getTitulo().equalsIgnoreCase(titulo)) {
-            if (this.left == null && this.right == null) {
-                return null;
-            } else {
-                if (this.left == null) {
-                    return this.right;
-                } else {
-                    if (this.right == null) {
-                        return this.left;
-                    } else {
-                        NodeBSTProgramaNetflix aux = this.right;
-                        while (aux.left != null) {
-                            aux = aux.left;
-                        }
-                        this.setTitulo(aux.getTitulo());
-                        this.setTipo(aux.getTipo());
-                        this.setDescricao(aux.getDescricao());
-                        this.setAnoLancamento(aux.getAnoLancamento());
-                        this.setClassificacaoIndicativa(aux.getClassificacaoIndicativa());
-                        this.setDuracao(aux.getDuracao());
-                        this.setGenero(aux.getGenero());
-                        this.setPaisOrigem(aux.getPaisOrigem());
-                        this.setTemporadas(aux.getTemporadas());
-                        this.setImdbId(aux.getImdbId());
-                        this.setImdbScore(aux.getImdbScore());
-                        this.setImdbVotes(aux.getImdbVotes());
-                        this.setTmdbPopularity(aux.getTmdbPopularity());
-                        this.setTmdbScore(aux.getTmdbScore());
-                        this.right = this.right.remove(aux.getTitulo());
-                        return this;
-                    }
-                }
-            }
-        } else {
-            if (titulo.compareToIgnoreCase(this.getTitulo()) < 0) {
-                if (this.left == null)
-                    return this;
-                else {
-                    this.left = this.left.remove(titulo);
-                    return this;
-                }
-            } else {
-                if (this.right == null)
-                    return this;
-                else {
-                    this.right = this.right.remove(titulo);
-                    return this;
-                }
-            }
+    // Método para encontrar o nó mínimo (usado na remoção)
+    private NodeBSTProgramaNetflix findMin(NodeBSTProgramaNetflix node) {
+        while (node.left != null) {
+            node = node.left;
         }
-        // Remove o programa e reorganiza a árvore para manter a estrutura de busca
-        // binária
+        return node;
+    }
+
+    // Método para copiar dados de um nó para outro
+    private void copyData(NodeBSTProgramaNetflix source, NodeBSTProgramaNetflix destination) {
+        destination.setId(source.getId());
+        destination.setTitulo(source.getTitulo());
+        destination.setTipo(source.getTipo());
+        destination.setDescricao(source.getDescricao());
+        destination.setAnoLancamento(source.getAnoLancamento());
+        destination.setClassificacaoIndicativa(source.getClassificacaoIndicativa());
+        destination.setDuracao(source.getDuracao());
+        destination.setGenero(source.getGenero());
+        destination.setPaisOrigem(source.getPaisOrigem());
+        destination.setTemporadas(source.getTemporadas());
+        destination.setImdbId(source.getImdbId());
+        destination.setImdbScore(source.getImdbScore());
+        destination.setImdbVotes(source.getImdbVotes());
+        destination.setTmdbPopularity(source.getTmdbPopularity());
+        destination.setTmdbScore(source.getTmdbScore());
     }
 
     // Métodos para imprimir a árvore em diferentes ordens: in-order, pre-order e
