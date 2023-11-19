@@ -6,7 +6,7 @@
 
 # Criação da Classe ProgramaNetFlix: Desenvolva uma classe em Java para representar cada item do dataset, contendo os 15 atributos fornecidos, como título, tipo de programa, descrição, ano de lançamento, etc. Implemente os métodos construtores, getters e setters.
 
-Implementação das Estruturas de Dados: Implemente as estruturas de dados AVL e BST em Java. A chave de inserção em ambas as árvores deve ser o ID do título.
+# Implementação das Estruturas de Dados: Implemente as estruturas de dados AVL e BST em Java. A chave de inserção em ambas as árvores deve ser o ID do título.
 
 Leitura e Inserção de Dados nas Estruturas: Crie uma funcionalidade para ler os dados do arquivo titles.csv e inseri-los nas estruturas de dados AVL e BST. Verifique se todos os 15 atributos estão preenchidos antes da inserção.
 

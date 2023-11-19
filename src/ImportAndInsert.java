@@ -1,24 +1,34 @@
 import java.io.FileReader;
 import java.io.IOException;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class ImportAndInsert {
 
     public static void importAndInsert(String filePath, TreeInterface tree) {
-        try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
+        CSVParser parser = new CSVParserBuilder()
+                .withSeparator(',')
+                .withQuoteChar('"')
+                .build();
+
+        try (CSVReader csvReader = new CSVReaderBuilder(new FileReader(filePath))
+                .withCSVParser(parser)
+                .build()) {
             String[] fields;
-            csvReader.readNext();
+            csvReader.readNext(); // Pula a linha de cabeçalho
 
             while ((fields = csvReader.readNext()) != null) {
-                if (fields.length < 15) {
+                if (fields.length != 15 || !isValidId(fields[0]) || isLineEmpty(fields)) {
                     continue;
                 }
 
                 String id = fields[0];
                 String titulo = fields[1];
                 App.Tipo tipo = determinarTipo(fields[2]);
-                String descricao = fields[3];
+                String descricao = fields[3].replace("\n", " ").replace("\r", " ");
                 int anoLancamento = Integer.parseInt(fields[4]);
                 String classificacaoIndicativa = fields[5];
                 int duracao = Integer.parseInt(fields[6]);
@@ -58,5 +68,18 @@ public class ImportAndInsert {
         } else {
             throw new IllegalArgumentException("Tipo desconhecido: " + tipoString);
         }
+    }
+
+    private static boolean isValidId(String id) {
+        return id.matches("^(tm|ts)\\d+$");
+    }
+
+    private static boolean isLineEmpty(String[] fields) {
+        for (String field : fields) {
+            if (!field.trim().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
