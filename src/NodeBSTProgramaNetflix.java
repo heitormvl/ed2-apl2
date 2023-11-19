@@ -3,7 +3,7 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
     NodeBSTProgramaNetflix left, right;
 
     // Construtor que inicializa um nó da árvore com as informações do programa
-    public NodeBSTProgramaNetflix(String id, String titulo, Tipo tipo, String descricao, int anoLancamento,
+    public NodeBSTProgramaNetflix(String id, String titulo, App.Tipo tipo, String descricao, int anoLancamento,
             String classificacaoIndicativa, int duracao, String genero, String paisOrigem, int temporadas,
             String imdbId, Float imdbScore, int imdbVotes, Float tmdbPopularity, Float tmdbScore) {
         super(id, titulo, tipo, descricao, anoLancamento, classificacaoIndicativa, duracao, genero, paisOrigem,
@@ -44,6 +44,10 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
 
     public NodeBSTProgramaNetflix getRight() {
         return right;
+    }
+
+    public NodeBSTProgramaNetflix getPrograma() {
+        return this;
     }
 
     public void setLeft(NodeBSTProgramaNetflix left) {

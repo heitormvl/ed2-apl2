@@ -6,7 +6,7 @@ public class NodeAVLProgramaNetflix extends ProgramaNetflix {
     int height;
 
     // Construtor que cria um nó da árvore a partir dos dados do programa
-    public NodeAVLProgramaNetflix(String id, String titulo, Tipo tipo, String descricao, int anoLancamento,
+    public NodeAVLProgramaNetflix(String id, String titulo, App.Tipo tipo, String descricao, int anoLancamento,
             String classificacaoIndicativa, int duracao, String genero, String paisOrigem, int temporadas,
             String imdbId, Float imdbScore, int imdbVotes, Float tmdbPopularity, Float tmdbScore) {
         super(id, titulo, tipo, descricao, anoLancamento, classificacaoIndicativa, duracao, genero, paisOrigem,

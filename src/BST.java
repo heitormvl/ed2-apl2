@@ -1,3 +1,8 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BST {
     // Raiz da árvore de busca binária
     private NodeBSTProgramaNetflix root;
@@ -16,10 +21,10 @@ public class BST {
         }
     }
 
-    // Método para remover um programa pelo título
-    public void remove(String titulo) {
+    // Método para remover um programa pelo id
+    public void remove(String id) {
         if (root != null) {
-            root = root.remove(titulo); // Atualiza a raiz após a remoção
+            root = root.remove(id); // Remove o nó com o id especificado se a árvore não estiver vazia
         }
     }
 
@@ -42,6 +47,43 @@ public class BST {
         }
     }
 
-    // Outros métodos, como atualização, contagem de nós, etc., podem ser
-    // adicionados aqui
+    // Método para exportar dados para um arquivo CSV
+    public void exportCsv(String filePath) {
+        List<String> lines = new ArrayList<>();
+        collectDataInOrder(root, lines);
+
+        try (FileWriter writer = new FileWriter(filePath)) {
+            // Escrever cabeçalho do CSV
+            writer.write(
+                    "ID,Titulo,Tipo,Descricao,AnoLancamento,ClassificacaoIndicativa,Duracao,Genero,PaisOrigem,Temporadas,ImdbID,ImdbScore,ImdbVotes,TmdbPopularity,TmdbScore\n");
+
+            // Escrever os dados
+            for (String line : lines) {
+                writer.write(line);
+                writer.write("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void collectDataInOrder(NodeBSTProgramaNetflix node, List<String> lines) {
+        if (node == null)
+            return;
+
+        collectDataInOrder(node.getLeft(), lines);
+
+        // Converter os dados do programa para formato CSV
+        ProgramaNetflix programa = node.getPrograma(); // Supondo que existe um método getPrograma
+        String csvLine = String.format("%s,%s,%s,\"%s\",%d,%s,%d,\"%s\",\"%s\",%d,%s,%.2f,%d,%.2f,%.2f",
+                programa.getId(), programa.getTitulo(), programa.getTipo().toString(), programa.getDescricao(),
+                programa.getAnoLancamento(), programa.getClassificacaoIndicativa(), programa.getDuracao(),
+                programa.getGenero(), programa.getPaisOrigem(), programa.getTemporadas(), programa.getImdbId(),
+                programa.getImdbScore(), programa.getImdbVotes(), programa.getTmdbPopularity(),
+                programa.getTmdbScore());
+        lines.add(csvLine);
+
+        collectDataInOrder(node.getRight(), lines);
+    }
+
 }

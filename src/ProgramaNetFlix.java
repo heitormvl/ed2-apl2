@@ -10,7 +10,7 @@ public class ProgramaNetflix {
     // Netflix
     private String id;
     private String titulo;
-    private Tipo tipo;
+    private App.Tipo tipo;
     private String descricao;
     private int anoLancamento;
     private String classificacaoIndicativa;
@@ -31,7 +31,7 @@ public class ProgramaNetflix {
     }
 
     // Construtor com parâmetros para inicializar todos os atributos da classe
-    public ProgramaNetflix(String id, String titulo, Tipo tipo, String descricao, int anoLancamento,
+    public ProgramaNetflix(String id, String titulo, App.Tipo tipo, String descricao, int anoLancamento,
             String classificacaoIndicativa, int duracao, String genero, String paisOrigem, int temporadas,
             String imdbId, Float imdbScore, int imdbVotes, Float tmdbPopularity, Float tmdbScore) {
         this.id = id;
@@ -62,7 +62,7 @@ public class ProgramaNetflix {
         return titulo;
     }
 
-    public Tipo getTipo() {
+    public App.Tipo getTipo() {
         return tipo;
     }
 
@@ -123,7 +123,7 @@ public class ProgramaNetflix {
         this.titulo = titulo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(App.Tipo tipo) {
         this.tipo = tipo;
     }
 
