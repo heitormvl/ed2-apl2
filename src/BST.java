@@ -3,61 +3,63 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BST {
-    // Raiz da árvore de busca binária
+public class BST implements TreeInterface {
     private NodeBSTProgramaNetflix root;
 
-    // Construtor da classe BST
     public BST() {
-        root = null; // Inicializa a árvore como vazia
+        root = null;
     }
 
-    // Método para inserir um novo programa na árvore
+    @Override
     public void insert(ProgramaNetflix programa) {
-        if (root == null) {
-            root = new NodeBSTProgramaNetflix(programa); // Cria um novo nó se a árvore estiver vazia
-        } else {
-            root.insert(programa); // Caso contrário, delega a inserção ao nó raiz
-        }
+        root = insert(root, programa);
     }
 
-    // Método para remover um programa pelo id
+    private NodeBSTProgramaNetflix insert(NodeBSTProgramaNetflix node, ProgramaNetflix programa) {
+        if (node == null) {
+            return new NodeBSTProgramaNetflix(programa);
+        }
+
+        if (programa.getId().compareToIgnoreCase(node.getPrograma().getId()) < 0) {
+            node.setLeft(insert(node.getLeft(), programa));
+        } else if (programa.getId().compareToIgnoreCase(node.getPrograma().getId()) > 0) {
+            node.setRight(insert(node.getRight(), programa));
+        }
+
+        return node;
+    }
+
     public void remove(String id) {
         if (root != null) {
-            root = root.remove(id); // Remove o nó com o id especificado se a árvore não estiver vazia
+            root = root.remove(id);
         }
     }
 
-    // Métodos para imprimir a árvore em diferentes ordens
     public void printInOrder() {
         if (root != null) {
-            root.printInOrder(); // Imprime a árvore em ordem se não estiver vazia
+            root.printInOrder();
         }
     }
 
     public void printPreOrder() {
         if (root != null) {
-            root.printPreOrder(); // Imprime a árvore em pré-ordem se não estiver vazia
+            root.printPreOrder();
         }
     }
 
     public void printPostOrder() {
         if (root != null) {
-            root.printPostOrder(); // Imprime a árvore em pós-ordem se não estiver vazia
+            root.printPostOrder();
         }
     }
 
-    // Método para exportar dados para um arquivo CSV
     public void exportCsv(String filePath) {
         List<String> lines = new ArrayList<>();
         collectDataInOrder(root, lines);
 
         try (FileWriter writer = new FileWriter(filePath)) {
-            // Escrever cabeçalho do CSV
             writer.write(
                     "ID,Titulo,Tipo,Descricao,AnoLancamento,ClassificacaoIndicativa,Duracao,Genero,PaisOrigem,Temporadas,ImdbID,ImdbScore,ImdbVotes,TmdbPopularity,TmdbScore\n");
-
-            // Escrever os dados
             for (String line : lines) {
                 writer.write(line);
                 writer.write("\n");
@@ -68,13 +70,13 @@ public class BST {
     }
 
     private void collectDataInOrder(NodeBSTProgramaNetflix node, List<String> lines) {
-        if (node == null)
+        if (node == null) {
             return;
+        }
 
         collectDataInOrder(node.getLeft(), lines);
 
-        // Converter os dados do programa para formato CSV
-        ProgramaNetflix programa = node.getPrograma(); // Supondo que existe um método getPrograma
+        ProgramaNetflix programa = node.getPrograma();
         String csvLine = String.format("%s,%s,%s,\"%s\",%d,%s,%d,\"%s\",\"%s\",%d,%s,%.2f,%d,%.2f,%.2f",
                 programa.getId(), programa.getTitulo(), programa.getTipo().toString(), programa.getDescricao(),
                 programa.getAnoLancamento(), programa.getClassificacaoIndicativa(), programa.getDuracao(),
@@ -85,5 +87,4 @@ public class BST {
 
         collectDataInOrder(node.getRight(), lines);
     }
-
 }

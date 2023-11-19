@@ -1,8 +1,6 @@
 public class NodeBSTProgramaNetflix extends ProgramaNetflix {
-    // Ponteiros para os filhos esquerdo e direito na árvore de busca binária
     NodeBSTProgramaNetflix left, right;
 
-    // Construtor que inicializa um nó da árvore com as informações do programa
     public NodeBSTProgramaNetflix(String id, String titulo, App.Tipo tipo, String descricao, int anoLancamento,
             String classificacaoIndicativa, int duracao, String genero, String paisOrigem, int temporadas,
             String imdbId, Float imdbScore, int imdbVotes, Float tmdbPopularity, Float tmdbScore) {
@@ -10,10 +8,8 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
                 temporadas, imdbId, imdbScore, imdbVotes, tmdbPopularity, tmdbScore);
         this.left = null;
         this.right = null;
-        // Chama o construtor da superclasse e inicializa os filhos como nulos
     }
 
-    // Construtor que aceita um objeto ProgramaNetflix e inicializa o nó
     public NodeBSTProgramaNetflix(ProgramaNetflix programa) {
         super(programa.getId(), programa.getTitulo(), programa.getTipo(), programa.getDescricao(),
                 programa.getAnoLancamento(), programa.getClassificacaoIndicativa(), programa.getDuracao(),
@@ -22,10 +18,8 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
                 programa.getTmdbScore());
         this.left = null;
         this.right = null;
-        // Inicializa o nó com as informações do programa
     }
 
-    // Construtor que também aceita nós filhos esquerdo e direito
     public NodeBSTProgramaNetflix(ProgramaNetflix programa, NodeBSTProgramaNetflix left, NodeBSTProgramaNetflix right) {
         super(programa.getId(), programa.getTitulo(), programa.getTipo(), programa.getDescricao(),
                 programa.getAnoLancamento(), programa.getClassificacaoIndicativa(), programa.getDuracao(),
@@ -34,31 +28,28 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
                 programa.getTmdbScore());
         this.left = left;
         this.right = right;
-        // Inicializa o nó com as informações do programa e com filhos específicos
     }
 
-    // Métodos getters e setters para os nós filhos
     public NodeBSTProgramaNetflix getLeft() {
         return left;
-    }
-
-    public NodeBSTProgramaNetflix getRight() {
-        return right;
-    }
-
-    public NodeBSTProgramaNetflix getPrograma() {
-        return this;
     }
 
     public void setLeft(NodeBSTProgramaNetflix left) {
         this.left = left;
     }
 
+    public NodeBSTProgramaNetflix getRight() {
+        return right;
+    }
+
     public void setRight(NodeBSTProgramaNetflix right) {
         this.right = right;
     }
 
-    // Método para inserir um novo programa na árvore
+    public NodeBSTProgramaNetflix getPrograma() {
+        return this;
+    }
+
     public void insert(ProgramaNetflix programa) {
         if (programa.getTitulo().compareToIgnoreCase(this.getTitulo()) < 0) {
             if (this.left == null) {
@@ -73,24 +64,19 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
                 this.right.insert(programa);
             }
         }
-        // Insere o programa de acordo com a ordem alfabética dos títulos
     }
 
-    // Método para remover um programa pelo ID
     public NodeBSTProgramaNetflix remove(String id) {
         if (this.getId().equalsIgnoreCase(id)) {
             if (this.left == null && this.right == null) {
-                return null; // Nó sem filhos
+                return null;
             } else if (this.left == null) {
-                return this.right; // Nó com apenas um filho à direita
+                return this.right;
             } else if (this.right == null) {
-                return this.left; // Nó com apenas um filho à esquerda
+                return this.left;
             } else {
-                // Nó com dois filhos
                 NodeBSTProgramaNetflix aux = findMin(this.right);
-                // Copiando os dados do sucessor para este nó
                 copyData(aux, this);
-                // Removendo o sucessor
                 this.right = this.right.remove(aux.getId());
                 return this;
             }
@@ -98,16 +84,15 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
             if (this.left != null) {
                 this.left = this.left.remove(id);
             }
-            return this; // Retorna o nó atual após a remoção da subárvore esquerda
+            return this;
         } else {
             if (this.right != null) {
                 this.right = this.right.remove(id);
             }
-            return this; // Retorna o nó atual após a remoção da subárvore direita
+            return this;
         }
     }
 
-    // Método para encontrar o nó mínimo (usado na remoção)
     private NodeBSTProgramaNetflix findMin(NodeBSTProgramaNetflix node) {
         while (node.left != null) {
             node = node.left;
@@ -115,7 +100,6 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
         return node;
     }
 
-    // Método para copiar dados de um nó para outro
     private void copyData(NodeBSTProgramaNetflix source, NodeBSTProgramaNetflix destination) {
         destination.setId(source.getId());
         destination.setTitulo(source.getTitulo());
@@ -134,8 +118,6 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
         destination.setTmdbScore(source.getTmdbScore());
     }
 
-    // Métodos para imprimir a árvore em diferentes ordens: in-order, pre-order e
-    // post-order
     public void printInOrder() {
         if (this.left != null) {
             this.left.printInOrder();
@@ -166,10 +148,8 @@ public class NodeBSTProgramaNetflix extends ProgramaNetflix {
         System.out.println(this.toString());
     }
 
-    // Representação em string do programa
     @Override
     public String toString() {
         return super.toString();
-        // Retorna os detalhes do programa em formato de string
     }
 }
